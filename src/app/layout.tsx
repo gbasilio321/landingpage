@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Oxanium, Outfit } from "next/font/google";
 import "./globals.css";
 
-const notoSans = Noto_Sans({
-  variable: "--font-noto-sans",
+const oxanium = Oxanium({
+  variable: "--font-oxanium",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
@@ -21,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${notoSans.variable} font-sans antialiased bg-black text-white`}
+        className={`${oxanium.variable} ${outfit.variable} font-sans antialiased bg-black text-white`}
       >
         {children}
       </body>

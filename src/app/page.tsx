@@ -1,58 +1,133 @@
+"use client";
+
 import Image from "next/image";
-import { Phone, Mail, Instagram, MapPin, Trophy, Users, Clock, Star } from "lucide-react";
+import { Menu, X, Phone, Mail, Instagram, MapPin, Trophy, Users, Clock, Star } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen" style={{ backgroundColor: '#1F1F1F' }}>
       {/* Header/Hero Section */}
-      <header className="relative min-h-screen bg-black overflow-hidden">
+      <header className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#1F1F1F' }}>
+        {/* Hamburger Menu */}
+        <div className="absolute top-6 right-6 z-50">
+          <button onClick={toggleMenu} className="p-2">
+            {isMenuOpen ? (
+              <X size={32} style={{ color: '#FF2332' }} />
+            ) : (
+              <Menu size={32} style={{ color: '#FF2332' }} />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMenuOpen && (
+          <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex items-center justify-center">
+            <nav className="text-center">
+              <ul className="space-y-8">
+                <li>
+                  <a 
+                    href="#sobre" 
+                    className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sobre
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#servicos" 
+                    className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Serviços
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="#contato" 
+                    className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contato
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        )}
+
         <div className="container mx-auto px-6 lg:px-12 h-screen flex items-center">
           <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
             {/* Left Content */}
             <div className="text-white space-y-8 lg:pr-8 px-4 lg:px-0">
               <div className="space-y-4">
-                <h1 className="text-6xl lg:text-8xl font-bold leading-tight">
-                  <span className="block text-white">TRANSFORM</span>
-                  <span className="block text-white">CHALLENGES</span>
-                  <span className="block bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                    INTO TRIUMPHS!
-                  </span>
+                <h1 className="font-oxanium font-bold leading-tight" style={{ fontSize: '80px' }}>
+                  <span className="block text-white">TURN EFFORT</span>
+                  <span className="block text-white">INTO RESULTS.</span>
                 </h1>
               </div>
               
               <div className="space-y-6">
-                <p className="text-xl lg:text-2xl text-gray-300 max-w-lg leading-relaxed">
-                  Sou <span className="text-red-500 font-semibold">Lucas Basilio</span>, personal trainer apaixonado por 
-                  capacitar pessoas a alcançarem seus objetivos fitness através de coaching personalizado e suporte.
+                <p className="font-outfit text-gray-300 max-w-lg leading-relaxed" style={{ fontSize: '24px' }}>
+                  Sou Lucas Basilio, personal trainer apaixonado por 
+                  capacitar pessoas a alcançarem seus objetivos fitness através de coaching 
+                  personalizado e suporte.
                 </p>
               </div>
 
               <div className="pt-4">
-                <a 
-                  href="#contato" 
-                  className="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                <button 
+                  className="font-outfit text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                  style={{ backgroundColor: '#FF2332', fontSize: '24px' }}
                 >
-                  Começar Agora
-                </a>
+                  Get Started
+                </button>
+              </div>
+
+              {/* Flags */}
+              <div className="flex gap-6 pt-8">
+                <Image
+                  src="/usa.png"
+                  alt="USA Flag"
+                  width={81}
+                  height={54}
+                  className="object-cover"
+                />
+                <Image
+                  src="/brasil.jpg"
+                  alt="Brazil Flag"
+                  width={81}
+                  height={54}
+                  className="object-cover"
+                />
+                <Image
+                  src="/espanha.png"
+                  alt="Spain Flag"
+                  width={81}
+                  height={54}
+                  className="object-cover"
+                />
               </div>
             </div>
 
             {/* Right Image */}
             <div className="relative lg:h-full flex items-center justify-center px-4 lg:px-0">
-              <div className="relative w-full max-w-2xl mx-auto">
-                <div className="relative w-full h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/lucas.jpg"
-                    alt="Lucas Basilio - Personal Trainer"
-                    width={800}
-                    height={600}
-                    className="w-full h-full object-cover object-center"
-                    priority
-                  />
-                  {/* Dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/40"></div>
-                </div>
+              <div className="relative">
+                <Image
+                  src="/lucas.jpg"
+                  alt="Lucas Basilio - Personal Trainer"
+                  width={544}
+                  height={572}
+                  className="object-cover object-center"
+                  style={{ borderRadius: '30px' }}
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -60,61 +135,80 @@ export default function Home() {
       </header>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-16" style={{ backgroundColor: '#2A2A2A' }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-6">
-              <div className="text-4xl font-bold text-red-500 mb-2">200+</div>
-              <div className="text-gray-300">Alunos Transformados</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>200+</div>
+              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Alunos Transformados</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold text-red-500 mb-2">15+</div>
-              <div className="text-gray-300">Anos de Experiência</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>15+</div>
+              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Anos de Experiência</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold text-red-500 mb-2">98%</div>
-              <div className="text-gray-300">Taxa de Sucesso</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>98%</div>
+              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Taxa de Sucesso</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold text-red-500 mb-2">24/7</div>
-              <div className="text-gray-300">Suporte Online</div>
+              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>24/7</div>
+              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Suporte Online</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="sobre" className="py-20 bg-black">
+      <section id="sobre" className="py-20" style={{ backgroundColor: '#1F1F1F' }}>
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6 text-white">Minha História</h2>
-              <p className="text-lg text-gray-300 mb-6">
-                Comecei minha jornada no fitness aos 18 anos, quando descobri o poder transformador do exercício físico. 
-                Após anos de estudo e dedicação, me tornei um Personal Trainer certificado pela ACSM e especialista em nutrição esportiva.
-              </p>
-              <p className="text-lg text-gray-300 mb-6">
-                Minha missão é ajudar pessoas a alcançarem seus objetivos de forma sustentável e saudável, 
-                criando planos personalizados que se adaptam ao estilo de vida de cada aluno.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Trophy className="text-red-500" size={24} />
-                  <span className="text-gray-300">Certificado ACSM - Personal Trainer</span>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div>
+                <h2 className="font-oxanium text-5xl font-bold mb-6">
+                  <span style={{ color: '#FF2332' }}>Sobre Mim</span>
+                </h2>
+                <p className="font-outfit text-xl text-gray-300 leading-relaxed mb-6" style={{ fontSize: '24px' }}>
+                  Com mais de 15 anos de experiência no mundo fitness, dedico minha carreira a transformar vidas através do exercício físico e nutrição adequada.
+                </p>
+                <p className="font-outfit text-lg text-gray-400 leading-relaxed" style={{ fontSize: '24px' }}>
+                  Minha abordagem personalizada combina ciência do exercício, psicologia esportiva e suporte nutricional para garantir que cada cliente alcance seus objetivos de forma sustentável e duradoura.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-6 bg-gray-900 rounded-xl">
+                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
+                  <div className="font-outfit text-2xl font-bold text-white mb-2">Certificado</div>
+                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>CREF Ativo</div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Trophy className="text-red-500" size={24} />
-                  <span className="text-gray-300">Especialização em Nutrição Esportiva</span>
+                <div className="text-center p-6 bg-gray-900 rounded-xl">
+                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
+                  <div className="font-outfit text-2xl font-bold text-white mb-2">Especialista</div>
+                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>Hipertrofia</div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Trophy className="text-red-500" size={24} />
-                  <span className="text-gray-300">Curso de Treinamento Funcional</span>
+                <div className="text-center p-6 bg-gray-900 rounded-xl">
+                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
+                  <div className="font-outfit text-2xl font-bold text-white mb-2">Formação</div>
+                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>Ed. Física</div>
+                </div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl">
+                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
+                  <div className="font-outfit text-2xl font-bold text-white mb-2">Experiência</div>
+                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>15+ Anos</div>
                 </div>
               </div>
             </div>
+            
             <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center">
-                <span className="text-8xl text-white">📸</span>
+              <div className="relative w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/lucas.jpg"
+                  alt="Lucas Basilio treinando"
+                  width={600}
+                  height={600}
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
             </div>
           </div>
@@ -122,146 +216,138 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-20 bg-gray-900">
+      <section id="servicos" className="py-20" style={{ backgroundColor: '#2A2A2A' }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-white">Meus Serviços</h2>
-            <p className="text-xl text-gray-300">Programas personalizados para cada objetivo</p>
+            <h2 className="font-oxanium text-5xl font-bold mb-6">
+              <span style={{ color: '#FF2332' }}>Meus Serviços</span>
+            </h2>
+            <p className="font-outfit text-xl text-gray-300 max-w-3xl mx-auto" style={{ fontSize: '24px' }}>
+              Ofereço soluções completas e personalizadas para transformar seu corpo e sua vida
+            </p>
           </div>
+
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow border border-gray-700">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-gray-800 p-8 rounded-2xl text-center group hover:bg-gray-700 transition-all duration-300">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                 <Users className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Personal Training</h3>
-              <p className="text-gray-300 mb-6">Treinos individualizados com acompanhamento completo e resultados garantidos.</p>
-              <ul className="text-left space-y-2 text-gray-300">
+              <h3 className="font-outfit text-2xl font-bold mb-4 text-white">Personal Training</h3>
+              <p className="font-outfit text-gray-400 mb-6" style={{ fontSize: '24px' }}>
+                Treinos personalizados e acompanhamento individual para máximos resultados
+              </p>
+              <ul className="text-left space-y-2 font-outfit text-gray-300" style={{ fontSize: '24px' }}>
                 <li>• Avaliação física completa</li>
-                <li>• Plano de treino personalizado</li>
-                <li>• Acompanhamento nutricional</li>
-                <li>• Suporte 24/7</li>
+                <li>• Programa de treino personalizado</li>
+                <li>• Acompanhamento semanal</li>
+                <li>• Suporte nutricional básico</li>
               </ul>
             </div>
-            <div className="bg-gray-800 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow border border-gray-700">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+
+            <div className="bg-gray-800 p-8 rounded-2xl text-center group hover:bg-gray-700 transition-all duration-300">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                 <Clock className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Consultoria Online</h3>
-              <p className="text-gray-300 mb-6">Acompanhamento à distância com toda a qualidade do presencial.</p>
-              <ul className="text-left space-y-2 text-gray-300">
+              <h3 className="font-outfit text-2xl font-bold mb-4 text-white">Consultoria Online</h3>
+              <p className="font-outfit text-gray-400 mb-6" style={{ fontSize: '24px' }}>
+                Acompanhamento remoto com toda a qualidade do presencial
+              </p>
+              <ul className="text-left space-y-2 font-outfit text-gray-300" style={{ fontSize: '24px' }}>
                 <li>• Treinos via app</li>
-                <li>• Videochamadas semanais</li>
-                <li>• Plano alimentar</li>
-                <li>• Grupo VIP no WhatsApp</li>
+                <li>• Videoconferências semanais</li>
+                <li>• Suporte via WhatsApp</li>
+                <li>• Plano nutricional incluso</li>
               </ul>
             </div>
-            <div className="bg-gray-800 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow border border-gray-700">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+
+            <div className="bg-gray-800 p-8 rounded-2xl text-center group hover:bg-gray-700 transition-all duration-300">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                 <Trophy className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Preparação Física</h3>
-              <p className="text-gray-300 mb-6">Treinamento específico para atletas e competições.</p>
-              <ul className="text-left space-y-2 text-gray-300">
-                <li>• Periodização de treino</li>
+              <h3 className="font-outfit text-2xl font-bold mb-4 text-white">Preparação Física</h3>
+              <p className="font-outfit text-gray-400 mb-6" style={{ fontSize: '24px' }}>
+                Treinamento específico para atletas e competições
+              </p>
+              <ul className="text-left space-y-2 font-outfit text-gray-300" style={{ fontSize: '24px' }}>
+                <li>• Periodização esportiva</li>
                 <li>• Análise biomecânica</li>
-                <li>• Recuperação ativa</li>
-                <li>• Suplementação esportiva</li>
+                <li>• Prevenção de lesões</li>
+                <li>• Acompanhamento médico</li>
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Before/After Section */}
-      <section id="resultados" className="py-20 bg-gray-900 text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Transformações Reais</h2>
-            <p className="text-xl text-gray-300">Veja os resultados incríveis dos meus alunos</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="bg-gray-800 rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all">
-                <div className="h-64 bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center">
-                  <span className="text-6xl text-white">📸</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">Cliente {item}</h3>
-                  <p className="text-gray-300 text-sm mb-4">-15kg em 4 meses</p>
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="text-yellow-400 fill-current" size={16} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20" style={{ backgroundColor: '#1F1F1F' }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-white">O Que Dizem Sobre Mim</h2>
-            <p className="text-xl text-gray-300">Depoimentos reais de alunos satisfeitos</p>
+            <h2 className="font-oxanium text-5xl font-bold mb-6">
+              <span style={{ color: '#FF2332' }}>Depoimentos</span>
+            </h2>
+            <p className="font-outfit text-xl text-gray-300" style={{ fontSize: '24px' }}>
+              Veja o que meus alunos falam sobre os resultados
+            </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-8 rounded-2xl border border-gray-700">
-              <div className="flex items-center gap-1 mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="text-yellow-400 fill-current" size={20} />
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gray-900 p-8 rounded-2xl">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-400 fill-current" size={20} />
                 ))}
               </div>
-              <p className="text-gray-300 mb-6 italic">
-                "Lucas mudou completamente minha relação com o exercício. Perdi 20kg e ganhei muito mais disposição!"
+              <p className="font-outfit text-gray-300 mb-6 italic" style={{ fontSize: '24px' }}>
+                "Lucas transformou completamente minha relação com o exercício. Perdi 15kg em 6 meses e ganhei muito mais disposição!"
               </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
+              <div className="flex items-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                   <span className="text-white font-bold">M</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-white">Maria Silva</div>
-                  <div className="text-sm text-gray-400">Empresária</div>
+                  <div className="font-outfit font-semibold text-white">Maria Silva</div>
+                  <div className="font-outfit text-gray-400 text-sm">Empresária</div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-800 p-8 rounded-2xl border border-gray-700">
-              <div className="flex items-center gap-1 mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="text-yellow-400 fill-current" size={20} />
+
+            <div className="bg-gray-900 p-8 rounded-2xl">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-400 fill-current" size={20} />
                 ))}
               </div>
-              <p className="text-gray-300 mb-6 italic">
-                "Profissional excepcional! Me ajudou a conquistar o corpo que sempre sonhei de forma saudável."
+              <p className="font-outfit text-gray-300 mb-6 italic" style={{ fontSize: '24px' }}>
+                "Profissional excepcional! Me ajudou a ganhar massa muscular de forma saudável e sustentável."
               </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
+              <div className="flex items-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                   <span className="text-white font-bold">J</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-white">João Santos</div>
-                  <div className="text-sm text-gray-400">Advogado</div>
+                  <div className="font-outfit font-semibold text-white">João Santos</div>
+                  <div className="font-outfit text-gray-400 text-sm">Engenheiro</div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-800 p-8 rounded-2xl border border-gray-700">
-              <div className="flex items-center gap-1 mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="text-yellow-400 fill-current" size={20} />
+
+            <div className="bg-gray-900 p-8 rounded-2xl">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="text-yellow-400 fill-current" size={20} />
                 ))}
               </div>
-              <p className="text-gray-300 mb-6 italic">
-                "Além de um excelente profissional, Lucas é uma pessoa incrível. Recomendo de olhos fechados!"
+              <p className="font-outfit text-gray-300 mb-6 italic" style={{ fontSize: '24px' }}>
+                "Metodologia incrível! Consegui meus objetivos muito mais rápido do que imaginava."
               </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
+              <div className="flex items-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                   <span className="text-white font-bold">A</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-white">Ana Costa</div>
-                  <div className="text-sm text-gray-400">Professora</div>
+                  <div className="font-outfit font-semibold text-white">Ana Costa</div>
+                  <div className="font-outfit text-gray-400 text-sm">Médica</div>
                 </div>
               </div>
             </div>
@@ -270,80 +356,90 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="py-20 bg-gray-900 text-white">
+      <section id="contato" className="py-20" style={{ backgroundColor: '#2A2A2A' }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Vamos Começar Sua Transformação?</h2>
-            <p className="text-xl text-gray-300">Entre em contato e agende sua avaliação gratuita</p>
+            <h2 className="font-oxanium text-5xl font-bold mb-6">
+              <span style={{ color: '#FF2332' }}>Entre em Contato</span>
+            </h2>
+            <p className="font-outfit text-xl text-gray-300" style={{ fontSize: '24px' }}>
+              Pronto para transformar sua vida? Vamos conversar!
+            </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-8">Informações de Contato</h3>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="space-y-8">
+              <h3 className="font-outfit text-3xl font-bold mb-8 text-white">Informações de Contato</h3>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                     <Phone className="text-white" size={20} />
                   </div>
                   <div>
-                    <div className="font-semibold">Telefone/WhatsApp</div>
-                    <div className="text-gray-300">(11) 99999-9999</div>
+                    <div className="font-outfit font-semibold text-white">Telefone/WhatsApp</div>
+                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>(11) 99999-9999</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                     <Mail className="text-white" size={20} />
                   </div>
                   <div>
-                    <div className="font-semibold">E-mail</div>
-                    <div className="text-gray-300">lucas@personaltrainer.com</div>
+                    <div className="font-outfit font-semibold text-white">E-mail</div>
+                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>lucas@personaltrainer.com</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                     <Instagram className="text-white" size={20} />
                   </div>
                   <div>
-                    <div className="font-semibold">Instagram</div>
-                    <div className="text-gray-300">@lucas.personaltrainer</div>
+                    <div className="font-outfit font-semibold text-white">Instagram</div>
+                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>@lucas.personaltrainer</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
                     <MapPin className="text-white" size={20} />
                   </div>
                   <div>
-                    <div className="font-semibold">Localização</div>
-                    <div className="text-gray-300">São Paulo, SP</div>
+                    <div className="font-outfit font-semibold text-white">Localização</div>
+                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>São Paulo, SP</div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="bg-gray-800 p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-6">Agende Sua Consulta</h3>
+              <h3 className="font-outfit text-2xl font-bold mb-6 text-white">Agende Sua Consulta</h3>
               <form className="space-y-4">
                 <input
                   type="text"
                   placeholder="Seu nome"
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
+                  style={{ fontSize: '24px' }}
                 />
                 <input
                   type="email"
                   placeholder="Seu e-mail"
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
+                  style={{ fontSize: '24px' }}
                 />
                 <input
                   type="tel"
                   placeholder="Seu telefone"
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
+                  style={{ fontSize: '24px' }}
                 />
                 <textarea
                   placeholder="Conte-me sobre seus objetivos"
                   rows={4}
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
+                  style={{ fontSize: '24px' }}
                 ></textarea>
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 py-4 rounded-lg font-semibold transition-all transform hover:scale-105"
+                  className="w-full py-4 rounded-lg font-outfit font-semibold transition-all transform hover:scale-105 text-white"
+                  style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)', fontSize: '24px' }}
                 >
                   Enviar Mensagem
                 </button>
@@ -354,10 +450,10 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-black text-center text-gray-400">
+      <footer className="py-8 text-center text-gray-400" style={{ backgroundColor: '#1F1F1F' }}>
         <div className="max-w-6xl mx-auto px-4">
-          <p>&copy; 2025 Lucas Basilio - Personal Trainer. Todos os direitos reservados.</p>
-          <p className="mt-2 text-sm">Transformando vidas através do fitness</p>
+          <p className="font-outfit" style={{ fontSize: '24px' }}>&copy; 2025 Lucas Basilio - Personal Trainer. Todos os direitos reservados.</p>
+          <p className="font-outfit mt-2 text-sm">Transformando vidas através do fitness</p>
         </div>
       </footer>
     </div>
