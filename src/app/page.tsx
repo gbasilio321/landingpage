@@ -202,7 +202,7 @@ export default function Home() {
             <div className="relative">
               <div className="relative w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/lucas.jpg"
+                  src="/lucas2.jpg"
                   alt="Lucas Basilio treinando"
                   width={600}
                   height={600}
@@ -367,84 +367,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <h3 className="font-outfit text-3xl font-bold mb-8 text-white">Informações de Contato</h3>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
-                    <Phone className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <div className="font-outfit font-semibold text-white">Telefone/WhatsApp</div>
-                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>(11) 99999-9999</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
-                    <Mail className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <div className="font-outfit font-semibold text-white">E-mail</div>
-                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>lucas@personaltrainer.com</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
-                    <Instagram className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <div className="font-outfit font-semibold text-white">Instagram</div>
-                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>@lucas.personaltrainer</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
-                    <MapPin className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <div className="font-outfit font-semibold text-white">Localização</div>
-                    <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>São Paulo, SP</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-800 p-8 rounded-2xl">
-              <h3 className="font-outfit text-2xl font-bold mb-6 text-white">Agende Sua Consulta</h3>
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Seu nome"
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
-                  style={{ fontSize: '24px' }}
-                />
-                <input
-                  type="email"
-                  placeholder="Seu e-mail"
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
-                  style={{ fontSize: '24px' }}
-                />
-                <input
-                  type="tel"
-                  placeholder="Seu telefone"
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
-                  style={{ fontSize: '24px' }}
-                />
-                <textarea
-                  placeholder="Conte-me sobre seus objetivos"
-                  rows={4}
-                  className="w-full p-4 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 font-outfit"
-                  style={{ fontSize: '24px' }}
-                ></textarea>
-                <button
-                  type="submit"
-                  className="w-full py-4 rounded-lg font-outfit font-semibold transition-all transform hover:scale-105 text-white"
-                  style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)', fontSize: '24px' }}
-                >
-                  Enviar Mensagem
-                </button>
-              </form>
-            </div>
+          <div className="flex justify-center">
+            <button
+              onClick={() => window.location.href = '/forms'}
+              className="py-6 px-12 rounded-lg font-outfit font-semibold transition-all transform hover:scale-105 text-white text-center"
+              style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)', fontSize: '32px' }}
+            >
+              Formulário
+            </button>
           </div>
         </div>
       </section>
