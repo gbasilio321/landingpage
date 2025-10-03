@@ -1,0 +1,353 @@
+/* Landing Page Styles */
+
+/* Layout and Background */
+.landing-container {
+  min-height: 100vh;
+  background-color: #1F1F1F;
+}
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url('/fundoAcademia.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.stats-section {
+  padding: 4rem 0;
+  background-color: #2A2A2A;
+}
+
+.about-section {
+  padding: 5rem 0;
+  background-color: #1F1F1F;
+}
+
+.services-section {
+  padding: 5rem 0;
+  background-color: #2A2A2A;
+}
+
+.testimonials-section {
+  padding: 5rem 0;
+  background-color: #1F1F1F;
+}
+
+.contact-section {
+  padding: 5rem 0;
+  background-color: #2A2A2A;
+}
+
+.footer-section {
+  padding: 2rem 0;
+  text-align: center;
+  color: #9CA3AF;
+  background-color: #1F1F1F;
+}
+
+/* Typography */
+.hero-title {
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.section-description {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.service-description {
+  font-size: 14px;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.service-list {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.testimonial-text {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer-text {
+  font-size: 14px;
+}
+
+/* Colors */
+.primary-color {
+  color: #FF2332;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-gray-300 {
+  color: #D1D5DB;
+}
+
+.text-gray-400 {
+  color: #9CA3AF;
+}
+
+/* Buttons */
+.primary-button {
+  background-color: #FF2332;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.025em;
+}
+
+.primary-button:hover {
+  background-color: #e01e2b;
+  box-shadow: 0 4px 12px rgba(255, 35, 50, 0.3);
+}
+
+.gradient-button {
+  background: linear-gradient(135deg, #FF2332, #FF6B47);
+  color: white;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.025em;
+}
+
+.gradient-button:hover {
+  box-shadow: 0 6px 20px rgba(255, 35, 50, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Language Flags */
+.flag-button {
+  transition: all 0.3s ease;
+  transform: scale(1);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.flag-button:hover {
+  transform: scale(1.1);
+}
+
+.flag-button.active {
+  box-shadow: 0 0 0 4px #FF2332;
+  border-radius: 0.25rem;
+}
+
+.flag-image {
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+/* Menu */
+.menu-button {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stats Cards */
+.stat-number {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #FF2332;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #D1D5DB;
+  font-weight: 400;
+}
+
+/* About Cards */
+.about-card {
+  text-align: center;
+  padding: 1.25rem;
+  background-color: #111827;
+  border-radius: 0.5rem;
+  border: 1px solid #1F2937;
+}
+
+.about-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.about-card-subtitle {
+  font-size: 13px;
+  color: #9CA3AF;
+  font-weight: 400;
+}
+
+/* Service Cards */
+.service-card {
+  background-color: #374151;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: 1px solid #4B5563;
+}
+
+.service-card:hover {
+  background-color: #4B5563;
+  border-color: #6B7280;
+  transform: translateY(-2px);
+}
+
+.service-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, #FF2332, #FF6B47);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background-color: #111827;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1F2937;
+}
+
+.testimonial-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  background: linear-gradient(135deg, #FF2332, #FF6B47);
+}
+
+/* Image Styles */
+.hero-image {
+  box-shadow: 0 25px 50px -12px rgba(255, 35, 50, 0.3), 0 0 0 1px rgba(255, 35, 50, 0.1);
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.02);
+}
+
+.about-image {
+  width: 100%;
+  height: 600px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.about-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, transparent);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 16px;
+  }
+  
+  .section-description {
+    font-size: 15px;
+  }
+  
+  .service-description {
+    font-size: 13px;
+  }
+  
+  .service-list {
+    font-size: 12px;
+  }
+  
+  .gradient-button {
+    font-size: 16px;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}

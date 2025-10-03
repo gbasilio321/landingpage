@@ -3,31 +3,310 @@
 import Image from "next/image";
 import { Menu, X, Phone, Mail, Instagram, MapPin, Trophy, Users, Clock, Star } from "lucide-react";
 import { useState } from "react";
+import './landing.css';
+
+type Language = 'pt' | 'en' | 'es';
+
+interface Translations {
+  [key: string]: {
+    pt: string;
+    en: string;
+    es: string;
+  };
+}
+
+const translations: Translations = {
+  turnEffort: {
+    pt: 'TRANSFORME ESFORÇO',
+    en: 'TURN EFFORT',
+    es: 'CONVIERTE ESFUERZO'
+  },
+  intoResults: {
+    pt: 'EM RESULTADOS.',
+    en: 'INTO RESULTS.',
+    es: 'EN RESULTADOS.'
+  },
+  description: {
+    pt: 'Sou Lucas Basilio, personal trainer apaixonado por capacitar pessoas a alcançarem seus objetivos fitness através de coaching personalizado e suporte.',
+    en: 'I am Lucas Basilio, a personal trainer passionate about empowering people to achieve their fitness goals through personalized coaching and support.',
+    es: 'Soy Lucas Basilio, entrenador personal apasionado por capacitar a las personas para alcanzar sus objetivos de fitness a través de coaching personalizado y apoyo.'
+  },
+  getStarted: {
+    pt: 'Começar Agora',
+    en: 'Get Started',
+    es: 'Empezar Ahora'
+  },
+  about: {
+    pt: 'Sobre',
+    en: 'About',
+    es: 'Acerca'
+  },
+  services: {
+    pt: 'Serviços',
+    en: 'Services',
+    es: 'Servicios'
+  },
+  contact: {
+    pt: 'Contato',
+    en: 'Contact',
+    es: 'Contacto'
+  },
+  transformedStudents: {
+    pt: 'Alunos Transformados',
+    en: 'Transformed Students',
+    es: 'Estudiantes Transformados'
+  },
+  yearsExperience: {
+    pt: 'Anos de Experiência',
+    en: 'Years of Experience',
+    es: 'Años de Experiencia'
+  },
+  successRate: {
+    pt: 'Taxa de Sucesso',
+    en: 'Success Rate',
+    es: 'Tasa de Éxito'
+  },
+  onlineSupport: {
+    pt: 'Suporte Online',
+    en: 'Online Support',
+    es: 'Soporte Online'
+  },
+  aboutMe: {
+    pt: 'Sobre Mim',
+    en: 'About Me',
+    es: 'Acerca de Mí'
+  },
+  aboutDescription1: {
+    pt: 'Com mais de 15 anos de experiência no mundo fitness, dedico minha carreira a transformar vidas através do exercício físico e nutrição adequada.',
+    en: 'With over 15 years of experience in the fitness world, I dedicate my career to transforming lives through physical exercise and proper nutrition.',
+    es: 'Con más de 15 años de experiencia en el mundo del fitness, dedico mi carrera a transformar vidas a través del ejercicio físico y la nutrición adecuada.'
+  },
+  aboutDescription2: {
+    pt: 'Minha abordagem personalizada combina ciência do exercício, psicologia esportiva e suporte nutricional para garantir que cada cliente alcance seus objetivos de forma sustentável e duradoura.',
+    en: 'My personalized approach combines exercise science, sports psychology and nutritional support to ensure each client achieves their goals in a sustainable and lasting way.',
+    es: 'Mi enfoque personalizado combina ciencia del ejercicio, psicología deportiva y apoyo nutricional para garantizar que cada cliente alcance sus objetivos de manera sostenible y duradera.'
+  },
+  certified: {
+    pt: 'Certificado',
+    en: 'Certified',
+    es: 'Certificado'
+  },
+  specialist: {
+    pt: 'Especialista',
+    en: 'Specialist',
+    es: 'Especialista'
+  },
+  hypertrophy: {
+    pt: 'Hipertrofia',
+    en: 'Hypertrophy',
+    es: 'Hipertrofia'
+  },
+  education: {
+    pt: 'Formação',
+    en: 'Education',
+    es: 'Formación'
+  },
+  physicalEd: {
+    pt: 'Ed. Física',
+    en: 'Phys. Ed.',
+    es: 'Ed. Física'
+  },
+  experience: {
+    pt: 'Experiência',
+    en: 'Experience',
+    es: 'Experiencia'
+  },
+  years15: {
+    pt: '15+ Anos',
+    en: '15+ Years',
+    es: '15+ Años'
+  },
+  myServices: {
+    pt: 'Meus Serviços',
+    en: 'My Services',
+    es: 'Mis Servicios'
+  },
+  servicesDescription: {
+    pt: 'Ofereço soluções completas e personalizadas para transformar seu corpo e sua vida',
+    en: 'I offer complete and personalized solutions to transform your body and your life',
+    es: 'Ofrezco soluciones completas y personalizadas para transformar tu cuerpo y tu vida'
+  },
+  personalTraining: {
+    pt: 'Personal Training',
+    en: 'Personal Training',
+    es: 'Entrenamiento Personal'
+  },
+  personalTrainingDesc: {
+    pt: 'Treinos personalizados e acompanhamento individual para máximos resultados',
+    en: 'Personalized training and individual monitoring for maximum results',
+    es: 'Entrenamientos personalizados y seguimiento individual para máximos resultados'
+  },
+  onlineConsulting: {
+    pt: 'Consultoria Online',
+    en: 'Online Consulting',
+    es: 'Consultoría Online'
+  },
+  onlineConsultingDesc: {
+    pt: 'Acompanhamento remoto com toda a qualidade do presencial',
+    en: 'Remote monitoring with all the quality of in-person training',
+    es: 'Seguimiento remoto con toda la calidad del entrenamiento presencial'
+  },
+  physicalPreparation: {
+    pt: 'Preparação Física',
+    en: 'Physical Preparation',
+    es: 'Preparación Física'
+  },
+  physicalPreparationDesc: {
+    pt: 'Treinamento específico para atletas e competições',
+    en: 'Specific training for athletes and competitions',
+    es: 'Entrenamiento específico para atletas y competiciones'
+  },
+  testimonials: {
+    pt: 'Depoimentos',
+    en: 'Testimonials',
+    es: 'Testimonios'
+  },
+  testimonialsDesc: {
+    pt: 'Veja o que meus alunos falam sobre os resultados',
+    en: 'See what my students say about the results',
+    es: 'Ve lo que dicen mis estudiantes sobre los resultados'
+  },
+  testimonial1: {
+    pt: '"Lucas transformou completamente minha relação com o exercício. Perdi 15kg em 6 meses e ganhei muito mais disposição!"',
+    en: '"Lucas completely transformed my relationship with exercise. I lost 15kg in 6 months and gained much more energy!"',
+    es: '"Lucas transformó completamente mi relación con el ejercicio. ¡Perdí 15kg en 6 meses y gané mucha más energía!"'
+  },
+  testimonial2: {
+    pt: '"Profissional excepcional! Me ajudou a ganhar massa muscular de forma saudável e sustentável."',
+    en: '"Exceptional professional! Helped me gain muscle mass in a healthy and sustainable way."',
+    es: '"¡Profesional excepcional! Me ayudó a ganar masa muscular de manera saludable y sostenible."'
+  },
+  testimonial3: {
+    pt: '"Metodologia incrível! Consegui meus objetivos muito mais rápido do que imaginava."',
+    en: '"Amazing methodology! I achieved my goals much faster than I imagined."',
+    es: '"¡Metodología increíble! Logré mis objetivos mucho más rápido de lo que imaginaba."'
+  },
+  getInTouch: {
+    pt: 'Entre em Contato',
+    en: 'Get In Touch',
+    es: 'Ponte en Contacto'
+  },
+  getInTouchDesc: {
+    pt: 'Pronto para transformar sua vida? Vamos conversar!',
+    en: 'Ready to transform your life? Let\'s talk!',
+    es: '¿Listo para transformar tu vida? ¡Hablemos!'
+  },
+  form: {
+    pt: 'Formulário',
+    en: 'Form',
+    es: 'Formulario'
+  },
+  footerText: {
+    pt: '© 2025 Lucas Basilio - Personal Trainer. Todos os direitos reservados.',
+    en: '© 2025 Lucas Basilio - Personal Trainer. All rights reserved.',
+    es: '© 2025 Lucas Basilio - Entrenador Personal. Todos los derechos reservados.'
+  },
+  footerSubtext: {
+    pt: 'Transformando vidas através do fitness',
+    en: 'Transforming lives through fitness',
+    es: 'Transformando vidas a través del fitness'
+  },
+  // Service items
+  completePhysicalAssessment: {
+    pt: '• Avaliação física completa',
+    en: '• Complete physical assessment',
+    es: '• Evaluación física completa'
+  },
+  personalizedTrainingProgram: {
+    pt: '• Programa de treino personalizado',
+    en: '• Personalized training program',
+    es: '• Programa de entrenamiento personalizado'
+  },
+  weeklyFollowUp: {
+    pt: '• Acompanhamento semanal',
+    en: '• Weekly follow-up',
+    es: '• Seguimiento semanal'
+  },
+  basicNutritionalSupport: {
+    pt: '• Suporte nutricional básico',
+    en: '• Basic nutritional support',
+    es: '• Apoyo nutricional básico'
+  },
+  trainingViaApp: {
+    pt: '• Treinos via app',
+    en: '• Training via app',
+    es: '• Entrenamientos vía app'
+  },
+  weeklyVideoconferences: {
+    pt: '• Videoconferências semanais',
+    en: '• Weekly videoconferences',
+    es: '• Videoconferencias semanales'
+  },
+  whatsappSupport: {
+    pt: '• Suporte via WhatsApp',
+    en: '• WhatsApp support',
+    es: '• Soporte vía WhatsApp'
+  },
+  nutritionalPlanIncluded: {
+    pt: '• Plano nutricional incluso',
+    en: '• Nutritional plan included',
+    es: '• Plan nutricional incluido'
+  },
+  sportsPeriodization: {
+    pt: '• Periodização esportiva',
+    en: '• Sports periodization',
+    es: '• Periodización deportiva'
+  },
+  biomechanicalAnalysis: {
+    pt: '• Análise biomecânica',
+    en: '• Biomechanical analysis',
+    es: '• Análisis biomecánico'
+  },
+  injuryPrevention: {
+    pt: '• Prevenção de lesões',
+    en: '• Injury prevention',
+    es: '• Prevención de lesiones'
+  },
+  medicalFollowUp: {
+    pt: '• Acompanhamento médico',
+    en: '• Medical follow-up',
+    es: '• Seguimiento médico'
+  }
+};
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('pt');
+
+  const t = (key: string): string => {
+    return translations[key]?.[currentLanguage] || key;
+  };
+
+  const changeLanguage = (lang: Language) => {
+    setCurrentLanguage(lang);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#1F1F1F' }}>
+    <div className="landing-container">
       {/* Header/Hero Section */}
-      <header className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#1F1F1F' }}>
+      <header className="hero-section">
         {/* Hamburger Menu */}
         <div className="absolute top-6 right-6 z-50">
-          <button onClick={toggleMenu} className="p-2">
+          <button onClick={toggleMenu} className="menu-button">
             {isMenuOpen ? (
-              <X size={32} style={{ color: '#FF2332' }} />
+              <X size={32} className="primary-color" />
             ) : (
-              <Menu size={32} style={{ color: '#FF2332' }} />
+              <Menu size={32} className="primary-color" />
             )}
           </button>
         </div>
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex items-center justify-center">
+          <div className="menu-overlay">
             <nav className="text-center">
               <ul className="space-y-8">
                 <li>
@@ -36,7 +315,7 @@ export default function Home() {
                     className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Sobre
+                    {t('about')}
                   </a>
                 </li>
                 <li>
@@ -45,7 +324,7 @@ export default function Home() {
                     className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Serviços
+                    {t('services')}
                   </a>
                 </li>
                 <li>
@@ -54,7 +333,7 @@ export default function Home() {
                     className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Contato
+                    {t('contact')}
                   </a>
                 </li>
               </ul>
@@ -67,52 +346,62 @@ export default function Home() {
             {/* Left Content */}
             <div className="text-white space-y-8 lg:pr-8 px-4 lg:px-0">
               <div className="space-y-4">
-                <h1 className="font-oxanium font-bold leading-tight" style={{ fontSize: '80px' }}>
-                  <span className="block text-white">TURN EFFORT</span>
-                  <span className="block text-white">INTO RESULTS.</span>
+                <h1 className="font-oxanium font-bold leading-tight hero-title">
+                  <span className="block text-white">{t('turnEffort')}</span>
+                  <span className="block text-white">{t('intoResults')}</span>
                 </h1>
               </div>
               
               <div className="space-y-6">
-                <p className="font-outfit text-gray-300 max-w-lg leading-relaxed" style={{ fontSize: '24px' }}>
-                  Sou Lucas Basilio, personal trainer apaixonado por 
-                  capacitar pessoas a alcançarem seus objetivos fitness através de coaching 
-                  personalizado e suporte.
+                <p className="font-outfit text-gray-300 max-w-lg leading-relaxed hero-description">
+                  {t('description')}
                 </p>
               </div>
 
               <div className="pt-4">
-                <button 
-                  className="font-outfit text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-                  style={{ backgroundColor: '#FF2332', fontSize: '24px' }}
-                >
-                  Get Started
+                <button className="font-outfit primary-button">
+                  {t('getStarted')}
                 </button>
               </div>
 
               {/* Flags */}
               <div className="flex gap-6 pt-8">
-                <Image
-                  src="/usa.png"
-                  alt="USA Flag"
-                  width={81}
-                  height={54}
-                  className="object-cover"
-                />
-                <Image
-                  src="/brasil.jpg"
-                  alt="Brazil Flag"
-                  width={81}
-                  height={54}
-                  className="object-cover"
-                />
-                <Image
-                  src="/espanha.png"
-                  alt="Spain Flag"
-                  width={81}
-                  height={54}
-                  className="object-cover"
-                />
+                <button 
+                  onClick={() => changeLanguage('en')}
+                  className={`flag-button ${currentLanguage === 'en' ? 'active' : ''}`}
+                >
+                  <Image
+                    src="/usa.png"
+                    alt="USA Flag"
+                    width={81}
+                    height={54}
+                    className="flag-image"
+                  />
+                </button>
+                <button 
+                  onClick={() => changeLanguage('pt')}
+                  className={`flag-button ${currentLanguage === 'pt' ? 'active' : ''}`}
+                >
+                  <Image
+                    src="/brasil.jpg"
+                    alt="Brazil Flag"
+                    width={81}
+                    height={54}
+                    className="flag-image"
+                  />
+                </button>
+                <button 
+                  onClick={() => changeLanguage('es')}
+                  className={`flag-button ${currentLanguage === 'es' ? 'active' : ''}`}
+                >
+                  <Image
+                    src="/espanha.png"
+                    alt="Spain Flag"
+                    width={81}
+                    height={54}
+                    className="flag-image"
+                  />
+                </button>
               </div>
             </div>
 
@@ -120,12 +409,11 @@ export default function Home() {
             <div className="relative lg:h-full flex items-center justify-center px-4 lg:px-0">
               <div className="relative">
                 <Image
-                  src="/lucas.jpg"
+                  src="/lucasInicio.jpg"
                   alt="Lucas Basilio - Personal Trainer"
-                  width={544}
-                  height={572}
-                  className="object-cover object-center"
-                  style={{ borderRadius: '30px' }}
+                  width={450}
+                  height={600}
+                  className="object-cover object-center hero-image"
                   priority
                 />
               </div>
@@ -135,80 +423,67 @@ export default function Home() {
       </header>
 
       {/* Stats Section */}
-      <section className="py-16" style={{ backgroundColor: '#2A2A2A' }}>
+      <section className="stats-section">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-6">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>200+</div>
-              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Alunos Transformados</div>
+              <div className="stat-number">200+</div>
+              <div className="font-outfit stat-label">{t('transformedStudents')}</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>15+</div>
-              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Anos de Experiência</div>
+              <div className="stat-number">15+</div>
+              <div className="font-outfit stat-label">{t('yearsExperience')}</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>98%</div>
-              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Taxa de Sucesso</div>
+              <div className="stat-number">98%</div>
+              <div className="font-outfit stat-label">{t('successRate')}</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold mb-2" style={{ color: '#FF2332' }}>24/7</div>
-              <div className="font-outfit text-gray-300" style={{ fontSize: '24px' }}>Suporte Online</div>
+              <div className="stat-number">24/7</div>
+              <div className="font-outfit stat-label">{t('onlineSupport')}</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="sobre" className="py-20" style={{ backgroundColor: '#1F1F1F' }}>
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div>
-                <h2 className="font-oxanium text-5xl font-bold mb-6">
-                  <span style={{ color: '#FF2332' }}>Sobre Mim</span>
-                </h2>
-                <p className="font-outfit text-xl text-gray-300 leading-relaxed mb-6" style={{ fontSize: '24px' }}>
-                  Com mais de 15 anos de experiência no mundo fitness, dedico minha carreira a transformar vidas através do exercício físico e nutrição adequada.
+      <section id="sobre" className="about-section">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="space-y-12">
+            <div>
+              <h2 className="font-oxanium section-title">
+                <span className="primary-color">{t('aboutMe')}</span>
+              </h2>
+              <div className="max-w-3xl mx-auto">
+                <p className="font-outfit text-xl text-gray-300 leading-relaxed section-description">
+                  {t('aboutDescription1')}
                 </p>
-                <p className="font-outfit text-lg text-gray-400 leading-relaxed" style={{ fontSize: '24px' }}>
-                  Minha abordagem personalizada combina ciência do exercício, psicologia esportiva e suporte nutricional para garantir que cada cliente alcance seus objetivos de forma sustentável e duradoura.
+                <p className="font-outfit text-lg text-gray-400 leading-relaxed section-description mt-4">
+                  {t('aboutDescription2')}
                 </p>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center p-6 bg-gray-900 rounded-xl">
-                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
-                  <div className="font-outfit text-2xl font-bold text-white mb-2">Certificado</div>
-                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>CREF Ativo</div>
-                </div>
-                <div className="text-center p-6 bg-gray-900 rounded-xl">
-                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
-                  <div className="font-outfit text-2xl font-bold text-white mb-2">Especialista</div>
-                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>Hipertrofia</div>
-                </div>
-                <div className="text-center p-6 bg-gray-900 rounded-xl">
-                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
-                  <div className="font-outfit text-2xl font-bold text-white mb-2">Formação</div>
-                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>Ed. Física</div>
-                </div>
-                <div className="text-center p-6 bg-gray-900 rounded-xl">
-                  <Trophy className="mx-auto mb-4" style={{ color: '#FF2332' }} size={40} />
-                  <div className="font-outfit text-2xl font-bold text-white mb-2">Experiência</div>
-                  <div className="font-outfit text-gray-400" style={{ fontSize: '24px' }}>15+ Anos</div>
-                </div>
               </div>
             </div>
             
-            <div className="relative">
-              <div className="relative w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/lucas2.jpg"
-                  alt="Lucas Basilio treinando"
-                  width={600}
-                  height={600}
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              <div className="about-card">
+                <Trophy className="mx-auto mb-4 primary-color" size={40} />
+                <div className="font-outfit about-card-title">{t('certified')}</div>
+                <div className="font-outfit about-card-subtitle">CREF Ativo</div>
+              </div>
+              <div className="about-card">
+                <Trophy className="mx-auto mb-4 primary-color" size={40} />
+                <div className="font-outfit about-card-title">{t('specialist')}</div>
+                <div className="font-outfit about-card-subtitle">{t('hypertrophy')}</div>
+              </div>
+              <div className="about-card">
+                <Trophy className="mx-auto mb-4 primary-color" size={40} />
+                <div className="font-outfit about-card-title">{t('education')}</div>
+                <div className="font-outfit about-card-subtitle">{t('physicalEd')}</div>
+              </div>
+              <div className="about-card">
+                <Trophy className="mx-auto mb-4 primary-color" size={40} />
+                <div className="font-outfit about-card-title">{t('experience')}</div>
+                <div className="font-outfit about-card-subtitle">{t('years15')}</div>
               </div>
             </div>
           </div>
@@ -216,63 +491,63 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-20" style={{ backgroundColor: '#2A2A2A' }}>
+      <section id="servicos" className="services-section">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-oxanium text-5xl font-bold mb-6">
-              <span style={{ color: '#FF2332' }}>Meus Serviços</span>
+            <h2 className="font-oxanium section-title">
+              <span className="primary-color">{t('myServices')}</span>
             </h2>
-            <p className="font-outfit text-xl text-gray-300 max-w-3xl mx-auto" style={{ fontSize: '24px' }}>
-              Ofereço soluções completas e personalizadas para transformar seu corpo e sua vida
+            <p className="font-outfit text-xl text-gray-300 max-w-3xl mx-auto section-description">
+              {t('servicesDescription')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-8 rounded-2xl text-center group hover:bg-gray-700 transition-all duration-300">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
+            <div className="service-card">
+              <div className="service-icon">
                 <Users className="text-white" size={32} />
               </div>
-              <h3 className="font-outfit text-2xl font-bold mb-4 text-white">Personal Training</h3>
-              <p className="font-outfit text-gray-400 mb-6" style={{ fontSize: '24px' }}>
-                Treinos personalizados e acompanhamento individual para máximos resultados
+              <h3 className="font-outfit service-title text-white">{t('personalTraining')}</h3>
+              <p className="font-outfit text-gray-400 service-description">
+                {t('personalTrainingDesc')}
               </p>
-              <ul className="text-left space-y-2 font-outfit text-gray-300" style={{ fontSize: '24px' }}>
-                <li>• Avaliação física completa</li>
-                <li>• Programa de treino personalizado</li>
-                <li>• Acompanhamento semanal</li>
-                <li>• Suporte nutricional básico</li>
+              <ul className="text-left space-y-2 font-outfit text-gray-300 service-list">
+                <li>{t('completePhysicalAssessment')}</li>
+                <li>{t('personalizedTrainingProgram')}</li>
+                <li>{t('weeklyFollowUp')}</li>
+                <li>{t('basicNutritionalSupport')}</li>
               </ul>
             </div>
 
-            <div className="bg-gray-800 p-8 rounded-2xl text-center group hover:bg-gray-700 transition-all duration-300">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
+            <div className="service-card">
+              <div className="service-icon">
                 <Clock className="text-white" size={32} />
               </div>
-              <h3 className="font-outfit text-2xl font-bold mb-4 text-white">Consultoria Online</h3>
-              <p className="font-outfit text-gray-400 mb-6" style={{ fontSize: '24px' }}>
-                Acompanhamento remoto com toda a qualidade do presencial
+              <h3 className="font-outfit service-title text-white">{t('onlineConsulting')}</h3>
+              <p className="font-outfit text-gray-400 service-description">
+                {t('onlineConsultingDesc')}
               </p>
-              <ul className="text-left space-y-2 font-outfit text-gray-300" style={{ fontSize: '24px' }}>
-                <li>• Treinos via app</li>
-                <li>• Videoconferências semanais</li>
-                <li>• Suporte via WhatsApp</li>
-                <li>• Plano nutricional incluso</li>
+              <ul className="text-left space-y-2 font-outfit text-gray-300 service-list">
+                <li>{t('trainingViaApp')}</li>
+                <li>{t('weeklyVideoconferences')}</li>
+                <li>{t('whatsappSupport')}</li>
+                <li>{t('nutritionalPlanIncluded')}</li>
               </ul>
             </div>
 
-            <div className="bg-gray-800 p-8 rounded-2xl text-center group hover:bg-gray-700 transition-all duration-300">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
+            <div className="service-card">
+              <div className="service-icon">
                 <Trophy className="text-white" size={32} />
               </div>
-              <h3 className="font-outfit text-2xl font-bold mb-4 text-white">Preparação Física</h3>
-              <p className="font-outfit text-gray-400 mb-6" style={{ fontSize: '24px' }}>
-                Treinamento específico para atletas e competições
+              <h3 className="font-outfit service-title text-white">{t('physicalPreparation')}</h3>
+              <p className="font-outfit text-gray-400 service-description">
+                {t('physicalPreparationDesc')}
               </p>
-              <ul className="text-left space-y-2 font-outfit text-gray-300" style={{ fontSize: '24px' }}>
-                <li>• Periodização esportiva</li>
-                <li>• Análise biomecânica</li>
-                <li>• Prevenção de lesões</li>
-                <li>• Acompanhamento médico</li>
+              <ul className="text-left space-y-2 font-outfit text-gray-300 service-list">
+                <li>{t('sportsPeriodization')}</li>
+                <li>{t('biomechanicalAnalysis')}</li>
+                <li>{t('injuryPrevention')}</li>
+                <li>{t('medicalFollowUp')}</li>
               </ul>
             </div>
           </div>
@@ -280,29 +555,29 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20" style={{ backgroundColor: '#1F1F1F' }}>
+      <section className="testimonials-section">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-oxanium text-5xl font-bold mb-6">
-              <span style={{ color: '#FF2332' }}>Depoimentos</span>
+            <h2 className="font-oxanium section-title">
+              <span className="primary-color">{t('testimonials')}</span>
             </h2>
-            <p className="font-outfit text-xl text-gray-300" style={{ fontSize: '24px' }}>
-              Veja o que meus alunos falam sobre os resultados
+            <p className="font-outfit text-xl text-gray-300 section-description">
+              {t('testimonialsDesc')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-900 p-8 rounded-2xl">
+            <div className="testimonial-card">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="text-yellow-400 fill-current" size={20} />
                 ))}
               </div>
-              <p className="font-outfit text-gray-300 mb-6 italic" style={{ fontSize: '24px' }}>
-                "Lucas transformou completamente minha relação com o exercício. Perdi 15kg em 6 meses e ganhei muito mais disposição!"
+              <p className="font-outfit text-gray-300 mb-6 italic testimonial-text">
+                {t('testimonial1')}
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
+                <div className="testimonial-avatar">
                   <span className="text-white font-bold">M</span>
                 </div>
                 <div>
@@ -312,17 +587,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-900 p-8 rounded-2xl">
+            <div className="testimonial-card">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="text-yellow-400 fill-current" size={20} />
                 ))}
               </div>
-              <p className="font-outfit text-gray-300 mb-6 italic" style={{ fontSize: '24px' }}>
-                "Profissional excepcional! Me ajudou a ganhar massa muscular de forma saudável e sustentável."
+              <p className="font-outfit text-gray-300 mb-6 italic testimonial-text">
+                {t('testimonial2')}
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
+                <div className="testimonial-avatar">
                   <span className="text-white font-bold">J</span>
                 </div>
                 <div>
@@ -332,17 +607,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-900 p-8 rounded-2xl">
+            <div className="testimonial-card">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="text-yellow-400 fill-current" size={20} />
                 ))}
               </div>
-              <p className="font-outfit text-gray-300 mb-6 italic" style={{ fontSize: '24px' }}>
-                "Metodologia incrível! Consegui meus objetivos muito mais rápido do que imaginava."
+              <p className="font-outfit text-gray-300 mb-6 italic testimonial-text">
+                {t('testimonial3')}
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4" style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)' }}>
+                <div className="testimonial-avatar">
                   <span className="text-white font-bold">A</span>
                 </div>
                 <div>
@@ -356,34 +631,33 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="py-20" style={{ backgroundColor: '#2A2A2A' }}>
+      <section id="contato" className="contact-section">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-oxanium text-5xl font-bold mb-6">
-              <span style={{ color: '#FF2332' }}>Entre em Contato</span>
+            <h2 className="font-oxanium section-title">
+              <span className="primary-color">{t('getInTouch')}</span>
             </h2>
-            <p className="font-outfit text-xl text-gray-300" style={{ fontSize: '24px' }}>
-              Pronto para transformar sua vida? Vamos conversar!
+            <p className="font-outfit text-xl text-gray-300 section-description">
+              {t('getInTouchDesc')}
             </p>
           </div>
 
           <div className="flex justify-center">
             <button
               onClick={() => window.location.href = '/forms'}
-              className="py-6 px-12 rounded-lg font-outfit font-semibold transition-all transform hover:scale-105 text-white text-center"
-              style={{ background: 'linear-gradient(135deg, #FF2332, #FF6B47)', fontSize: '32px' }}
+              className="font-outfit gradient-button"
             >
-              Formulário
+              {t('form')}
             </button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-gray-400" style={{ backgroundColor: '#1F1F1F' }}>
+      <footer className="footer-section">
         <div className="max-w-6xl mx-auto px-4">
-          <p className="font-outfit" style={{ fontSize: '24px' }}>&copy; 2025 Lucas Basilio - Personal Trainer. Todos os direitos reservados.</p>
-          <p className="font-outfit mt-2 text-sm">Transformando vidas através do fitness</p>
+          <p className="font-outfit footer-text">{t('footerText')}</p>
+          <p className="font-outfit mt-2 text-sm">{t('footerSubtext')}</p>
         </div>
       </footer>
     </div>
