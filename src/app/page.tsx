@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Menu, X, Phone, Mail, Instagram, MapPin, Trophy, Users, Clock, Star } from "lucide-react";
+import { Phone, Mail, Instagram, MapPin, Trophy, Users, Clock, Star } from "lucide-react";
 import { useState } from "react";
 import './landing.css';
 
@@ -275,7 +275,6 @@ const translations: Translations = {
 };
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<Language>('pt');
 
   const t = (key: string): string => {
@@ -286,60 +285,49 @@ export default function Home() {
     setCurrentLanguage(lang);
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Offset para compensar o header
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
   };
   return (
     <div className="landing-container">
       {/* Header/Hero Section */}
       <header className="hero-section">
-        {/* Hamburger Menu */}
-        <div className="absolute top-6 right-6 z-50">
-          <button onClick={toggleMenu} className="menu-button">
-            {isMenuOpen ? (
-              <X size={32} className="primary-color" />
-            ) : (
-              <Menu size={32} className="primary-color" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="menu-overlay">
-            <nav className="text-center">
-              <ul className="space-y-8">
-                <li>
-                  <a 
-                    href="#sobre" 
-                    className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t('about')}
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#servicos" 
-                    className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t('services')}
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#contato" 
-                    className="font-outfit text-white text-2xl hover:text-red-500 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t('contact')}
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
+        {/* Navigation Menu */}
+        <nav className="absolute top-8 left-1/2 transform -translate-x-1/2 z-50 main-nav">
+          <ul className="flex space-x-6 md:space-x-8">
+            <li>
+              <button 
+                onClick={() => scrollToSection('sobre')}
+                className="font-outfit text-white text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-wide cursor-pointer bg-transparent border-none nav-button"
+              >
+                {t('about')}
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => scrollToSection('servicos')}
+                className="font-outfit text-white text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-wide cursor-pointer bg-transparent border-none nav-button"
+              >
+                {t('services')}
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => scrollToSection('contato')}
+                className="font-outfit text-white text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-wide cursor-pointer bg-transparent border-none nav-button"
+              >
+                {t('contact')}
+              </button>
+            </li>
+          </ul>
+        </nav>
 
         <div className="container mx-auto px-6 lg:px-12 h-screen flex items-center">
           <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">

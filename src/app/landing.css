@@ -1,5 +1,10 @@
 /* Landing Page Styles */
 
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Layout and Background */
 .landing-container {
   min-height: 100vh;
@@ -147,10 +152,38 @@
   cursor: pointer;
   letter-spacing: 0.025em;
 }
-
 .gradient-button:hover {
   box-shadow: 0 6px 20px rgba(255, 35, 50, 0.4);
   transform: translateY(-1px);
+}
+
+/* Navigation */
+.main-nav {
+  backdrop-filter: blur(10px);
+  background-color: rgba(31, 31, 31, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.nav-button {
+  position: relative;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FF2332, #FF6B47);
+  transition: width 0.3s ease;
+}
+
+.nav-button:hover::after {
+  width: 100%;
 }
 
 /* Language Flags */
@@ -339,6 +372,18 @@
   .gradient-button {
     font-size: 16px;
     padding: 0.875rem 1.5rem;
+  }
+  
+  .main-nav {
+    padding: 0.5rem 1rem;
+  }
+  
+  .main-nav ul {
+    gap: 1rem;
+  }
+  
+  .main-nav a {
+    font-size: 12px;
   }
 }
 
