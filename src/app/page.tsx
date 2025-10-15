@@ -330,9 +330,10 @@ export default function Home() {
         </nav>
 
         <div className="container mx-auto px-6 lg:px-12 h-screen flex items-center">
-          <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
             {/* Left Content */}
-            <div className="text-white space-y-8 lg:pr-8 px-4 lg:px-0">
+            <div className="text-white space-y-8 lg:pr-8">
               <div className="space-y-4">
                 <h1 className="font-oxanium font-bold leading-tight hero-title">
                   <span className="block text-white">{t('turnEffort')}</span>
@@ -394,7 +395,7 @@ export default function Home() {
             </div>
 
             {/* Right Image */}
-            <div className="relative lg:h-full flex items-center justify-center px-4 lg:px-0">
+            <div className="relative lg:h-full flex items-center justify-center">
               <div className="relative">
                 <Image
                   src="/lucasInicio.jpg"
@@ -405,6 +406,77 @@ export default function Home() {
                   priority
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Mobile Layout - Vertical Stack */}
+          <div className="lg:hidden flex flex-col items-center text-center space-y-6 w-full px-4 hero-mobile">
+            {/* 1. Título */}
+            <h1 className="font-oxanium font-bold leading-tight hero-title text-white">
+              <span className="block">{t('turnEffort')}</span>
+              <span className="block">{t('intoResults')}</span>
+            </h1>
+            
+            {/* 2. Foto do Lucas */}
+            <div className="flex justify-center">
+              <Image
+                src="/lucasInicio.jpg"
+                alt="Lucas Basilio - Personal Trainer"
+                width={450}
+                height={600}
+                className="object-cover object-center hero-image"
+                priority
+              />
+            </div>
+
+            {/* 3. About (descrição) */}
+            <p className="font-outfit text-gray-300 leading-relaxed hero-description">
+              {t('description')}
+            </p>
+
+            {/* 4. Botão */}
+            <button className="font-outfit primary-button">
+              {t('getStarted')}
+            </button>
+
+            {/* 5. Flags */}
+            <div className="flex gap-6 justify-center">
+              <button 
+                onClick={() => changeLanguage('en')}
+                className={`flag-button ${currentLanguage === 'en' ? 'active' : ''}`}
+              >
+                <Image
+                  src="/usa.png"
+                  alt="USA Flag"
+                  width={81}
+                  height={54}
+                  className="flag-image"
+                />
+              </button>
+              <button 
+                onClick={() => changeLanguage('pt')}
+                className={`flag-button ${currentLanguage === 'pt' ? 'active' : ''}`}
+              >
+                <Image
+                  src="/brasil.jpg"
+                  alt="Brazil Flag"
+                  width={81}
+                  height={54}
+                  className="flag-image"
+                />
+              </button>
+              <button 
+                onClick={() => changeLanguage('es')}
+                className={`flag-button ${currentLanguage === 'es' ? 'active' : ''}`}
+              >
+                <Image
+                  src="/espanha.png"
+                  alt="Spain Flag"
+                  width={81}
+                  height={54}
+                  className="flag-image"
+                />
+              </button>
             </div>
           </div>
         </div>
@@ -632,7 +704,7 @@ export default function Home() {
 
           <div className="flex justify-center">
             <button
-              onClick={() => window.location.href = '/forms'}
+              onClick={() => window.open('https://forms.gle/91xKYLtE1QjwM2dh7', '_blank')}
               className="font-outfit gradient-button"
             >
               {t('form')}
