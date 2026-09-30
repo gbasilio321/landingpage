@@ -27,9 +27,9 @@ const translations: Translations = {
     es: 'EN RESULTADOS.'
   },
   description: {
-    pt: 'Sou Lucas Basilio, personal trainer apaixonado por capacitar pessoas a alcançarem seus objetivos fitness através de coaching personalizado e suporte.',
-    en: 'I am Lucas Basilio, a personal trainer passionate about empowering people to achieve their fitness goals through personalized coaching and support.',
-    es: 'Soy Lucas Basilio, entrenador personal apasionado por capacitar a las personas para alcanzar sus objetivos de fitness a través de coaching personalizado y apoyo.'
+    pt: 'Sou Gustavo Basilio, personal trainer apaixonado por capacitar pessoas a alcançarem seus objetivos fitness através de coaching personalizado e suporte.',
+    en: 'I am Gustavo Basilio, a personal trainer passionate about empowering people to achieve their fitness goals through personalized coaching and support.',
+    es: 'Soy Gustavo Basilio, entrenador personal apasionado por capacitar a las personas para alcanzar sus objetivos de fitness a través de coaching personalizado y apoyo.'
   },
   getStarted: {
     pt: 'Começar Agora',
@@ -172,9 +172,9 @@ const translations: Translations = {
     es: 'Ve lo que dicen mis estudiantes sobre los resultados'
   },
   testimonial1: {
-    pt: '"Lucas transformou completamente minha relação com o exercício. Perdi 15kg em 6 meses e ganhei muito mais disposição!"',
-    en: '"Lucas completely transformed my relationship with exercise. I lost 15kg in 6 months and gained much more energy!"',
-    es: '"Lucas transformó completamente mi relación con el ejercicio. ¡Perdí 15kg en 6 meses y gané mucha más energía!"'
+    pt: '"Gustavo transformou completamente minha relação com o exercício. Perdi 15kg em 6 meses e ganhei muito mais disposição!"',
+    en: '"Gustavo completely transformed my relationship with exercise. I lost 15kg in 6 months and gained much more energy!"',
+    es: '"Gustavo transformó completamente mi relación con el ejercicio. ¡Perdí 15kg en 6 meses y gané mucha más energía!"'
   },
   testimonial2: {
     pt: '"Profissional excepcional! Me ajudou a ganhar massa muscular de forma saudável e sustentável."',
@@ -202,9 +202,9 @@ const translations: Translations = {
     es: 'Formulario'
   },
   footerText: {
-    pt: '© 2025 Lucas Basilio - Personal Trainer. Todos os direitos reservados.',
-    en: '© 2025 Lucas Basilio - Personal Trainer. All rights reserved.',
-    es: '© 2025 Lucas Basilio - Entrenador Personal. Todos los derechos reservados.'
+    pt: '© 2025 Gustavo Basilio - Personal Trainer. Todos os direitos reservados.',
+    en: '© 2025 Gustavo Basilio - Personal Trainer. All rights reserved.',
+    es: '© 2025 Gustavo Basilio - Entrenador Personal. Todos los derechos reservados.'
   },
   footerSubtext: {
     pt: 'Transformando vidas através do fitness',
@@ -398,8 +398,8 @@ export default function Home() {
             <div className="relative lg:h-full flex items-center justify-center">
               <div className="relative">
                 <Image
-                  src="/lucasInicio.jpg"
-                  alt="Lucas Basilio - Personal Trainer"
+                  src="/cara.png"
+                  alt="Gustavo Basilio - Personal Trainer"
                   width={450}
                   height={600}
                   className="object-cover object-center hero-image"
@@ -417,11 +417,11 @@ export default function Home() {
               <span className="block">{t('intoResults')}</span>
             </h1>
             
-            {/* 2. Foto do Lucas */}
+            {/* 2. Foto do cara */}
             <div className="flex justify-center">
               <Image
-                src="/lucasInicio.jpg"
-                alt="Lucas Basilio - Personal Trainer"
+                src="/cara.png"
+                alt="Gustavo Basilio - Personal Trainer"
                 width={450}
                 height={600}
                 className="object-cover object-center hero-image"

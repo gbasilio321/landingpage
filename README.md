@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gustavo Basilio — Personal Trainer (Landing Page)
 
-## Getting Started
+Landing page de uma página (one-page) para personal trainer, voltada a um público internacional. A página é **trilíngue** — português, inglês e espanhol — com troca de idioma em tempo real pelas bandeiras.
 
-First, run the development server:
+> **Status:** projeto concluído e publicado em **[lucaspersonal.vercel.app](https://lucaspersonal.vercel.app/)**, mas **não está mais em uso ativo**. O repositório fica aqui como portfólio/referência.
+
+---
+
+## Preview
+
+![Hero](docs/hero.png)
+
+![Serviços](docs/servicos.png)
+
+![Depoimentos](docs/depoimentos.png)
+
+---
+
+## Funcionalidades
+
+- **Troca de idioma (PT / EN / ES)** — dicionário de traduções em memória, com estado no cliente; todos os textos da página trocam ao clicar na bandeira correspondente.
+- **Navegação com scroll suave** — menu fixo no topo que rola até as seções `Sobre`, `Serviços` e `Contato`, com offset para não ficar embaixo do header.
+- **Layout responsivo** — versões separadas para desktop (grid de 2 colunas) e mobile (stack vertical reordenado: título → foto → descrição → CTA → bandeiras).
+- **Seções da página:** Hero, Estatísticas (alunos, anos de experiência, taxa de sucesso, suporte), Sobre, Serviços (Personal Training, Consultoria Online, Preparação Física), Depoimentos e Contato.
+- **Captação de leads** — o botão de contato abre um Google Forms em nova aba.
+- **Fontes otimizadas** — `Oxanium` (títulos) e `Outfit` (corpo) carregadas via `next/font`, e imagens via `next/image`.
+
+## Stack
+
+| Camada | Tecnologia |
+| --- | --- |
+| Framework | Next.js 15 (App Router) |
+| Linguagem | TypeScript 5 |
+| UI | React 19 |
+| Estilo | Tailwind CSS 4 (via `@tailwindcss/postcss`) + CSS customizado (`landing.css`) |
+| Ícones | lucide-react |
+| Lint | ESLint 9 (`eslint-config-next`) |
+| Deploy | Vercel |
+
+
+## Rodando localmente
+
+Pré-requisito: Node.js 18.18+ (recomendado 20+).
 
 ```bash
+git clone https://github.com/gbasilio321/personal-lucas.git
+cd personal-lucas
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando | O que faz |
+| --- | --- |
+| `npm run dev` | servidor de desenvolvimento |
+| `npm run build` | build de produção |
+| `npm start` | sobe o build de produção |
+| `npm run lint` | roda o ESLint |
 
-## Learn More
+Não há variáveis de ambiente necessárias.
 
-To learn more about Next.js, take a look at the following resources:
+## Como editar o conteúdo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Textos e traduções:** todos ficam no objeto `translations` no topo de `src/app/page.tsx`. Cada chave tem as três variantes (`pt`, `en`, `es`) — ao adicionar um texto novo, preencha os três idiomas, senão a própria chave aparece na tela como fallback.
+- **Idioma inicial:** `useState<Language>('pt')` em `page.tsx`.
+- **Link do formulário de contato:** URL do Google Forms na seção `#contato` de `page.tsx`.
+- **Números das estatísticas** (200+, 15+, 98%, 24/7) e **depoimentos**: estão escritos direto no JSX das respectivas seções.
+- **Imagens:** troque os arquivos em `public/` mantendo os nomes, ou atualize os `src` no `page.tsx`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O projeto está hospedado na Vercel — qualquer push na branch principal dispara um novo deploy. Como é um app Next.js padrão sem env vars, não há configuração extra necessária.
