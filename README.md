@@ -2,7 +2,7 @@
 
 Landing page de uma página (one-page) para personal trainer, voltada a um público internacional. A página é **trilíngue** — português, inglês e espanhol — com troca de idioma em tempo real pelas bandeiras.
 
-> **Status:** projeto concluído e publicado em **[lucaspersonal.vercel.app](https://lucaspersonal.vercel.app/)**, mas **não está mais em uso ativo**. O repositório fica aqui como portfólio/referência.
+> **Status:** projeto concluído e publicado em **[https://landingpage-nine-delta-23.vercel.app/](https://landingpage-nine-delta-23.vercel.app/)**
 
 ---
 
@@ -43,8 +43,8 @@ Landing page de uma página (one-page) para personal trainer, voltada a um públ
 Pré-requisito: Node.js 18.18+ (recomendado 20+).
 
 ```bash
-git clone https://github.com/gbasilio321/personal-lucas.git
-cd personal-lucas
+git clone https://github.com/gbasilio321/landingpage.git
+cd landingpage
 npm install
 npm run dev
 ```

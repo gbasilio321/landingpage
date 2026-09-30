@@ -15,7 +15,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Lucas Basilio - Personal Trainer",
+  title: "Gustavo Basilio - Personal Trainer",
   description: "Transformando vidas através do fitness. Personal trainer especializado em emagrecimento, hipertrofia e condicionamento físico.",
 };
 
