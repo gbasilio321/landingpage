@@ -1,14 +1,25 @@
-# Linguagens principais
-*.ts linguist-language=TypeScript
+* text=auto
+
+# TypeScript (Next/React)
+*.ts  linguist-language=TypeScript
 *.tsx linguist-language=TypeScript
-*.js linguist-language=JavaScript
+
+# JavaScript (React)
+*.js  linguist-language=JavaScript
 *.jsx linguist-language=JavaScript
-*.html linguist-language=HTML
-*.css linguist-language=CSS
 
-# Arquivos de configuração
-*.json linguist-language=JSON
+# HTML e CSS aparecem na barra de linguagens
+*.html linguist-detectable=true
+*.css  linguist-detectable=true
 
-# Ignorar arquivos gerados
-.next linguist-generated=true
-node_modules linguist-vendored=true
+# Não contar (dependências e arquivos gerados)
+node_modules/** linguist-vendored
+.next/** linguist-generated
+out/** linguist-generated
+build/** linguist-generated
+dist/** linguist-generated
+*.min.js linguist-generated
+*.min.css linguist-generated
+package-lock.json linguist-generated
+yarn.lock linguist-generated
+pnpm-lock.yaml linguist-generated
