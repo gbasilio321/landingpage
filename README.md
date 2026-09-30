@@ -29,7 +29,7 @@ Landing page de uma página (one-page) para personal trainer, voltada a um públ
 
 | Camada | Tecnologia |
 | --- | --- |
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Linguagem | TypeScript 5 |
 | UI | React 19 |
 | Estilo | Tailwind CSS 4 (via `@tailwindcss/postcss`) + CSS customizado (`landing.css`) |
