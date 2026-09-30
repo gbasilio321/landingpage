@@ -417,7 +417,7 @@ export default function Home() {
               <span className="block">{t('intoResults')}</span>
             </h1>
             
-            {/* 2. Foto do cara */}
+            {/* 2. Foto do Lucas */}
             <div className="flex justify-center">
               <Image
                 src="/cara.png"
